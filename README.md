@@ -20,7 +20,17 @@ conda activate oceanrays
 ```
 pip install seabird tqdm
 ```
-
+### Install for general user:
+```
+# from this directory
+pip install .
+# or from another directory
+pip install '/path/to/this/directory/'
+```
+### Updating
+```
+pip install update . # from here
+```
 ----
 ## Run
-Look at the `.ipynb` notebooks for how to process. 
+Look at the `.ipynb` notebooks within the `tests` directory for how to process. 
