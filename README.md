@@ -16,9 +16,9 @@ conda create --name oceanrays python ipython ipykernel numpy scipy matplotlib
 ``` 
 conda activate oceanrays
 ```
-### Now install seabird for reading CTD data
+### Now install seabird for reading CTD data and tqdm for monitoring progress
 ```
-pip install seabird
+pip install seabird tqdm
 ```
 
 ----

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools >= 80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "OceanRays"
+version = "0.2.0"
+dependencies = [
+  "seabird>=0.12.0",
+  "numpy>=2.3.2",
+  "scipy>=1.16.0",
+  "matplotlib>=3.10.0",
+  "tqdm>=4.66.0",
+]
+authors = [
+  { name="Andrew Newman", email="anewman@gatech.edu" },
+]
+description = "A package for simple ray tracing and travel time calculations in an open ocean"
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/avnewman/OceanRays"
+Issues = "https://github.com/avnewman/OceanRays/issues"
