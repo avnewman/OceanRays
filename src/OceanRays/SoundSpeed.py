@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # Read raw CTD profile to get sound speed values
 def CTDSoundSpeed(profile,model='Mackenzie'):
     """
@@ -254,3 +253,67 @@ def MunkSoundSpeedGrad(z,c0=1500, z_min=1300, B=1300, epsilon=0.0057, ssp_only=F
     else:
       return c_profile, grad
     
+
+def writeSSP(profile, cProfile, model='Mackenzie', outfile='output.csv'):
+    """
+    Write sound speed profile to a CSV file.
+
+    Args:
+        profile (dict): Dictionary containing CTD profile data with 'DEPTH' key.
+        cProfile (array): Array of sound speeds corresponding to the depths (m/s).
+        model (str): Name of the sound speed model used.
+        outfile (str): Path to the output CSV file.
+    """
+    import csv
+    # Extract header info if available
+    header_lines = []
+    lat = getattr(profile, 'attributes', {}).get('LATITUDE', None)
+    lon = getattr(profile, 'attributes', {}).get('LONGITUDE', None)
+    dt = getattr(profile, 'attributes', {}).get('datetime', None)
+    fname = getattr(profile, 'filename', None)
+    
+    if lat is not None and lon is not None:
+        header_lines.append(f"# Latitude, Longitude, {lat}, {lon}")
+    if dt is not None:
+        header_lines.append(f"# DateTime, {dt}")
+    if fname is not None:
+        header_lines.append(f"# OriginalFile, {fname}")
+    if model is not None:
+        header_lines.append(f"# Sound Speed Model, {model}")
+
+    # Write header and data using csv package
+    with open(outfile, 'w', newline='') as f:
+        for line in header_lines:
+            f.write(line + '\n')
+        writer = csv.writer(f)
+        writer.writerow(['Depth_m', 'SoundSpeed_m_per_s'])
+        for d, c in zip(profile['DEPTH'], cProfile):
+            writer.writerow([d, c])
+    print(f"Sound speed profile written to {outfile} (with header info)")
+
+def readSSP(infile):
+    """
+    Read sound speed profile from a CSV file (written by writeSSP).
+
+    Args:
+        infile (str): Path to the input CSV file.
+
+    Returns:
+        tuple: Depth array and sound speed array.
+    """
+    import csv
+    depths = []
+    sound_speeds = []
+    header_lines = []
+    with open(infile, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row and row[0].startswith('#'):
+                header_lines.append(row)
+                continue
+            if row and row[0] == 'Depth_m':
+                continue  # skip column header
+            if row:
+                depths.append(float(row[0]))
+                sound_speeds.append(float(row[1]))
+    return np.array(depths), np.array(sound_speeds), header_lines

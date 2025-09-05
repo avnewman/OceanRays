@@ -6,6 +6,7 @@ The notebooks within show examples of running various codes within OceanRays
 1. `BuildSoundSpeed` shows how to:
     * Use existing CTD data in .cnv format to visualize variables
     * Build sound speed profiles from data
+    * write out results to local file (and read them in again)
     * Compare results between different models and pre-computed values
  
 1. `RayTracing` shows how to:

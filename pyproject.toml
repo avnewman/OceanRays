@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "OceanRays"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
   "seabird>=0.12.0",
   "numpy>=2.3.2",
