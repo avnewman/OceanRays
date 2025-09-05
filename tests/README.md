@@ -4,9 +4,10 @@ The notebooks within show examples of running various codes within OceanRays
 
 ## Notebooks
 1. `BuildSoundSpeed` shows how to:
-    * Use existing CTD data in .cnv format to build sound speed profile.
-    * Some additional test plots to evaluate data coming off the CTD .cnv file.
-
+    * Use existing CTD data in .cnv format to visualize variables
+    * Build sound speed profiles from data
+    * Compare results between different models and pre-computed values
+ 
 1. `RayTracing` shows how to:
     * Run `RayTrace` to calculate the raypaths for acoustic waves through the above models from a starting depth and angle to either a maximum distance or a surface crossing.  The surface crossings are used later for travel-time calculations.  Examples are shown both for real data and a theoretical model.
 
